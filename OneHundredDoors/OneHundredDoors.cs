@@ -4,7 +4,7 @@ namespace CyberDojo.OneHundredDoors
 {
     public class OneHundredDoors
     {
-        public List<bool> Doors { get; private set; }
+        public List<bool> Doors { get; }
 
         public OneHundredDoors()
         {

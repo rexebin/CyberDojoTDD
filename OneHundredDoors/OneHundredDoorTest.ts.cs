@@ -6,7 +6,7 @@ namespace CyberDojo.OneHundredDoors
     [TestFixture]
     public class OneHundredDoorsTest
     {
-        private OneHundredDoors Sut { get; set; }
+        private OneHundredDoors Sut { get; set; } = null!;
 
         [SetUp]
         public void CreateOneHundredDoors()
