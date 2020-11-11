@@ -32,21 +32,19 @@ namespace CyberDojo.AbcProblem
         public bool MakeWord(string word)
         {
             var charactors = word.ToCharArray();
+            
             var canMake = false;
             foreach (var charactor in charactors)
             {
                 var result = _blocks.Find(x =>
                     x.Any(z => z == char.ToUpper(charactor)));
-                if (result != null)
-                {
-                    _blocks.Remove(result);
-                    canMake = true;
-                }
-                else
+                if (result == null)
                 {
                     canMake = false;
                     break;
                 }
+                _blocks.Remove(result);
+                canMake = true;
             }
 
             return canMake;
