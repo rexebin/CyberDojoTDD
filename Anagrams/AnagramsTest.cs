@@ -15,7 +15,7 @@ namespace CyberDojo.Anagrams
         [Test]
         public void Given_AB_ShouldList_AB_BA()
         {
-            var expected = new List<string>()
+            var expected = new List<string>
             {
                 "ab", "ba"
             };
@@ -37,7 +37,7 @@ namespace CyberDojo.Anagrams
         [Test]
         public void Given_BIRO_ShouldReturnGivenResult()
         {
-            var expected = new List<string>()
+            var expected = new List<string>
             {
                 "biro", "bior", "brio", "broi", "boir", "bori",
                 "ibro", "ibor", "irbo", "irob", "iobr", "iorb",
