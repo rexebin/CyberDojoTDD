@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,6 +11,7 @@ namespace CyberDojo.AlignColumns
     {
         string Print(string text);
     }
+
     public class AlignColumns : IAlignColumns
     {
         public List<List<int>> GetAllColumnWidths(string input)
@@ -43,6 +45,7 @@ namespace CyberDojo.AlignColumns
                 var col = i;
                 result.Add(GetColumnMaxWidth(input, col));
             }
+
             return result;
         }
 
@@ -70,9 +73,7 @@ namespace CyberDojo.AlignColumns
             var colWidth = GetMaxColumnWidth(text);
             var result = GetLines(text)
                 .Select(x => GetColumns(x).Select((x, index) => x.PadRight(colWidth[index], ' ')));
-            return string.Join("\n",  result.Select(x => string.Join("", x).Trim())).Trim();
+            return string.Join(Environment.NewLine, result.Select(x => string.Join("", x).Trim())).Trim();
         }
     }
-
- 
 }

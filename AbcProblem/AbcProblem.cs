@@ -31,18 +31,19 @@ namespace CyberDojo.AbcProblem
 
         public bool MakeWord(string word)
         {
-            var charactors = word.ToCharArray();
-            
+            var characters = word.ToCharArray();
+
             var canMake = false;
-            foreach (var charactor in charactors)
+            foreach (var character in characters)
             {
                 var result = _blocks.Find(x =>
-                    x.Any(z => z == char.ToUpper(charactor)));
+                    x.Any(z => z == char.ToUpper(character)));
                 if (result == null)
                 {
                     canMake = false;
                     break;
                 }
+
                 _blocks.Remove(result);
                 canMake = true;
             }

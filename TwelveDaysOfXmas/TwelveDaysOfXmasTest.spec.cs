@@ -16,7 +16,8 @@ namespace CyberDojo.TwelveDaysOfXmas
         public void ShouldPrintDay1()
         {
             var result = Sut.PrintLyricByDay(1);
-            Assert.AreEqual(@"On the first day of Christmas,
+            Assert.AreEqual(
+@"On the first day of Christmas,
 My true love gave to me:
 A partridge in a pear tree.", result);
             
@@ -26,7 +27,8 @@ A partridge in a pear tree.", result);
         public void ShouldPrintDay2()
         {
             var result = Sut.PrintLyricByDay(2);
-            Assert.AreEqual(@"On the second day of Christmas,
+            Assert.AreEqual(
+@"On the second day of Christmas,
 My true love gave to me:
 Two turtle doves and
 A partridge in a pear tree.", result);
@@ -36,7 +38,8 @@ A partridge in a pear tree.", result);
         public void ShouldPrintDay12()
         {
             var result = Sut.PrintLyricByDay(12);
-            Assert.AreEqual(@"On the twelfth day of Christmas,
+            Assert.AreEqual(
+@"On the twelfth day of Christmas,
 My true love gave to me:
 Twelve drummers drumming
 Eleven pipers piping
@@ -57,7 +60,8 @@ A partridge in a pear tree.", result);
         {
             var sut = new TwelveDaysOfXmas();
             var result = sut.PrintLyric();
-            Assert.AreEqual(@"On the first day of Christmas,
+            Assert.AreEqual(
+@"On the first day of Christmas,
 My true love gave to me:
 A partridge in a pear tree.
 

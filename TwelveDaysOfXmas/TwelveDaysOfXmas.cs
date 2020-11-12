@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CyberDojo.TwelveDaysOfXmas
@@ -40,7 +41,7 @@ My true love gave to me:
             {
                 result.Add(_sentences[j]);
             }
-            return string.Join("\n", result);
+            return string.Join(Environment.NewLine, result);
         }
 
         public string PrintLyric()
@@ -50,7 +51,7 @@ My true love gave to me:
             {
                 result.Add(PrintLyricByDay(i+1));
             }
-            return string.Join("\n\n", result);
+            return string.Join($"{Environment.NewLine}{Environment.NewLine}", result);
         }
     }
 }
