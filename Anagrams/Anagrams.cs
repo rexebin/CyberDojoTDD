@@ -17,7 +17,8 @@ namespace CyberDojo.Anagrams
             {
                 var restOfList = list.ToList();
                 restOfList.RemoveAt(i);
-                var anagrams = GetAnagrams(restOfList.ToArray()).Select(x => list[i] + x).ToList();
+                var anagrams = GetAnagrams(restOfList.ToArray())
+                    .Select(x => list[i] + x).ToList();
                 result = result.Concat(anagrams).ToList();
             }
 
