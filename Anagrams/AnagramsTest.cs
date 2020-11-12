@@ -39,7 +39,6 @@ namespace CyberDojo.Anagrams
         {
             var expected = new List<string>()
             {
-
                 "biro", "bior", "brio", "broi", "boir", "bori",
                 "ibro", "ibor", "irbo", "irob", "iobr", "iorb",
                 "rbio", "rboi", "ribo", "riob", "robi", "roib",
