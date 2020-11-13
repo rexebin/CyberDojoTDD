@@ -13,15 +13,16 @@ namespace CyberDojo.BalancedParentheses
         }
 
         [Test]
-        [TestCase("[{}]", "[]")]
+        [TestCase("", "")]
+        [TestCase("{}", "")]
         [TestCase("[]", "")]
+        [TestCase("()", "")]
+        [TestCase("[{}]", "[]")]
         [TestCase("{{)(}}", "{{)(}}")]
         [TestCase("({)}", "(")]
         [TestCase("(", "(")]
         [TestCase("{}([])", "{}()")]
         [TestCase("{}()", "{}")]
-        [TestCase("{}", "")]
-        [TestCase("", "")]
         [TestCase("word{word}Word", "wordWord")]
         [TestCase("word{(word}Word)", "word{")]
         public void GivenText_ShouldRemoveLastMatchedParentheses(string input, string expected)
@@ -37,8 +38,8 @@ namespace CyberDojo.BalancedParentheses
         [TestCase("{]")]
         [TestCase("{[}]")]
         [TestCase("{{)(}}")]
-        [TestCase("{word{word)(word}word}")]
         [TestCase("({)}")]
+        [TestCase("{word{word)(word}word}")]
         public void GivenUnMatchedParentheses_ShouldReturnFalse(string input)
         {
             Assert.IsFalse(sut.IsBalanced(input));
