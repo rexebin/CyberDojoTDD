@@ -7,7 +7,7 @@ namespace CyberDojo.Anagrams
     {
         public List<string> GetAnagrams(params string[] list)
         {
-            if (list.Length == 1)
+            if (list.Length <= 1)
             {
                 return list.ToList();
             }
