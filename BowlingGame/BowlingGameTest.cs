@@ -5,7 +5,7 @@ namespace CyberDojo.BowlingGame
     [TestFixture]
     public class BowlingGameTest
     {
-        private BowlingGame sut;
+        private BowlingGame sut = null!;
 
         [SetUp]
         public void Create()
