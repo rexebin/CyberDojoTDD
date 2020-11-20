@@ -51,8 +51,8 @@ namespace CyberDojo.ArrayShuffle
                 Assert.IsTrue(expectedPossibility.Find(x => x.SequenceEqual(result)) != null);
             }
 
-            Assert.IsTrue(abCount > 0 && abCount < ShuffleTimes/1.5);
-            Assert.IsTrue(baCount > 0 && baCount < ShuffleTimes/1.5);
+            Assert.IsTrue(abCount > 0 && abCount < ShuffleTimes / 1.5);
+            Assert.IsTrue(baCount > 0 && baCount < ShuffleTimes / 1.5);
         }
 
         [Test]
@@ -67,8 +67,8 @@ namespace CyberDojo.ArrayShuffle
                 new[] {'c', 'a', 'b'},
                 new[] {'c', 'b', 'a'}
             };
-            var count = new[] {0, 0, 0, 0, 0, 0};
-           
+            var count = new[] { 0, 0, 0, 0, 0, 0 };
+
             for (var i = 0; i < ShuffleTimes; i++)
             {
                 char[] result = _sut.Shuffle("abc".ToCharArray());
@@ -79,7 +79,7 @@ namespace CyberDojo.ArrayShuffle
 
             foreach (var c in count)
             {
-                Assert.IsTrue(c > 0 && c < ShuffleTimes/4);
+                Assert.IsTrue(c > 0 && c < ShuffleTimes / 2);
             }
         }
 
