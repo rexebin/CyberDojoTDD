@@ -1,15 +1,15 @@
 using NUnit.Framework;
 
-namespace CyberDojoTDD.ClosestToZero
+namespace CyberDojo.ClosestToZero
 {
     public class ClosestToZeroTest
     {
-        private ClosestToZero sut = null!;
+        private CyberDojoTDD.ClosestToZero.ClosestToZero sut = null!;
 
         [SetUp]
         public void Create()
         {
-            sut = new ClosestToZero();
+            sut = new CyberDojoTDD.ClosestToZero.ClosestToZero();
         }
 
 

@@ -1,15 +1,15 @@
 using NUnit.Framework;
 
-namespace CyberDojoTDD.CombinedNumber
+namespace CyberDojo.CombinedNumber
 {
     public class CombinedNumberTest
     {
-        private CombinedNumber sut = null!;
+        private CyberDojoTDD.CombinedNumber.CombinedNumber sut = null!;
 
         [SetUp]
         public void Create()
         {
-            sut = new CombinedNumber();
+            sut = new CyberDojoTDD.CombinedNumber.CombinedNumber();
         }
 
 
