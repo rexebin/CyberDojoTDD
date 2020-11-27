@@ -19,7 +19,7 @@ namespace CyberDojoTDD.CombinedNumber
             var lengthDiff = Math.Abs(x.Length - y.Length);
             if (lengthDiff == 0)
             {
-                return string.Compare(x, y);
+                return String.CompareOrdinal(x, y);
             }
             var isXLonger = x.Length > y.Length;
             for (int i = 0; i < lengthDiff; i++)
@@ -33,7 +33,7 @@ namespace CyberDojoTDD.CombinedNumber
                     x += x[0];
                 }
             }
-            return string.Compare(x, y);
+            return String.CompareOrdinal(x, y);
         }
     }
 }

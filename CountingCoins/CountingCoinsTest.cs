@@ -20,9 +20,9 @@ namespace CyberDojo.CountingCoins
         [TestCase(26, 6)]
         public void GivenAmount_CalcCombinationsForCoin5and1(int amount, int expected)
         {
-            Assert.AreEqual(expected, _sut.CalcCombinationsFor5And1(amount));
+            Assert.AreEqual(expected, _sut.CalcCombinations(amount, CountingCoins.Coins.Five));
         }
-        
+
         [Test]
         [TestCase(10, 4)]
         [TestCase(15, 6)]
@@ -30,9 +30,9 @@ namespace CyberDojo.CountingCoins
         [TestCase(20, 9)]
         public void GivenAmount_CalcCombinationsForCoin10and5and1(int amount, int expected)
         {
-            Assert.AreEqual(expected, _sut.CalcCombinationsFor10And5And1(amount));
+            Assert.AreEqual(expected, _sut.CalcCombinations(amount, CountingCoins.Coins.Ten));
         }
-        
+
         [Test]
         [TestCase(1, 1)]
         [TestCase(5, 2)]
