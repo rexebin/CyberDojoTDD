@@ -123,16 +123,16 @@ public static class AutoComplete
 
     internal static IEnumerable<SuffixItem> GetAllSuffixes(this string input)
     {
-        var i = 0;
+        var termIndex = 0;
         return input.Select((x, index) =>
         {
             if (x == '$')
             {
-                i++;
+                termIndex++;
             }
 
             var suffix = input[index..];
-            return new SuffixItem(suffix, i, index);
+            return new SuffixItem(suffix, termIndex, index);
         });
     }
 
