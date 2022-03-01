@@ -6,18 +6,9 @@ namespace CyberDojo.Autocomplete;
 
 public static class AutoComplete
 {
-    public static IEnumerable<string> FilterByKeyword(this IEnumerable<string> source,
-        string keyword,
-        SuffixArrayResult suffixArrayResult)
-    {
-        var sourceTerms = source.ToArray();
-        var result = suffixArrayResult
-            .FindMatchingSuffixes(keyword.ToLower())
-            .ToArray();
-        var indies = result.Select(i => suffixArrayResult.SuffixArray[i].TermIndex);
-        return indies.Select(i => sourceTerms[i]);
-    }
-
+    /**
+     * one time suffix array construction per set of terms.
+     */
     public static SuffixArrayResult GetSuffixArray(this IEnumerable<string> input)
     {
         var concatenateToString = input.ConcatenateToString();
@@ -28,6 +19,24 @@ public static class AutoComplete
             .GetSuffixArray().ToArray();
         return new SuffixArrayResult(suffixArray, concatenateToString);
     }
+    
+    /**
+     * extension method to given terms, take keyword and saved suffix array for the terms, and return filtered terms. 
+     */
+    
+    public static IEnumerable<string> FilterByKeyword(this IEnumerable<string> source,
+        string keyword,
+        SuffixArrayResult suffixArrayResult)
+    {
+        var sourceTerms = source.ToArray();
+        var result = suffixArrayResult
+            .FindMatchingSuffixes(keyword.ToLower())
+            .ToArray();
+        var termIndexes = result.Select(i => suffixArrayResult.SuffixArray[i].TermIndex);
+        return termIndexes.Select(termIndex => sourceTerms[termIndex]);
+    }
+
+   
 
     internal static IEnumerable<int> FindMatchingSuffixes(
         this SuffixArrayResult suffixArrayResult, string search)
@@ -46,28 +55,28 @@ public static class AutoComplete
     {
         var result = new[] { matchingIndex };
         var arrayItems = suffixArrayResult.SuffixArray;
-        var previousIndex = matchingIndex;
+        var leftIndex = matchingIndex;
         while (true)
         {
-            previousIndex -= 1;
-            if (previousIndex < 0) break;
+            leftIndex -= 1;
+            if (leftIndex < 0) break;
             var substring =
-                suffixArrayResult.ConcatenatedString[arrayItems[previousIndex].WordIndex..];
+                suffixArrayResult.ConcatenatedString[arrayItems[leftIndex].WordIndex..];
             if (!substring.StartsWith(search)) break;
 
-            result = result.Append(previousIndex).ToArray();
+            result = result.Append(leftIndex).ToArray();
         }
 
-        var nextIndex = matchingIndex;
+        var rightIndex = matchingIndex;
 
         while (true)
         {
-            nextIndex += 1;
-            if (nextIndex >= arrayItems.Length) break;
-            var substring = suffixArrayResult.ConcatenatedString[arrayItems[nextIndex].WordIndex..];
+            rightIndex += 1;
+            if (rightIndex >= arrayItems.Length) break;
+            var substring = suffixArrayResult.ConcatenatedString[arrayItems[rightIndex].WordIndex..];
             if (!substring.StartsWith(search)) break;
 
-            result = result.Append(nextIndex).ToArray();
+            result = result.Append(rightIndex).ToArray();
         }
 
         return result;
@@ -104,7 +113,7 @@ public static class AutoComplete
 
     internal static IEnumerable<SuffixArrayItem> GetSuffixArray(this IEnumerable<SuffixItem> input)
     {
-        return input.Select(x => new SuffixArrayItem(x.Index, x.TermIndex));
+        return input.Select(x => new SuffixArrayItem(x.WordIndex, x.TermIndex));
     }
 
     internal static string ConcatenateToString(this IEnumerable<string> input)

@@ -2,14 +2,14 @@
 
 public class SuffixItem
 {
-    public SuffixItem(string suffix, int termIndex, int index)
+    public SuffixItem(string suffix, int termIndex, int wordIndex)
     {
         Suffix = suffix;
         TermIndex = termIndex;
-        Index = index;
+        WordIndex = wordIndex;
     }
 
     public int TermIndex { get; private set; }
-    public int Index { get; set; }
+    public int WordIndex { get; set; }
     public string Suffix { get; private set; }
 }
