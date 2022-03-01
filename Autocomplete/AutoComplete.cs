@@ -19,11 +19,10 @@ public static class AutoComplete
             .GetSuffixArray().ToArray();
         return new SuffixArrayResult(suffixArray, concatenateToString);
     }
-    
+
     /**
      * extension method to given terms, take keyword and saved suffix array for the terms, and return filtered terms. 
      */
-    
     public static IEnumerable<string> FilterByKeyword(this IEnumerable<string> source,
         string keyword,
         SuffixArrayResult suffixArrayResult)
@@ -36,7 +35,6 @@ public static class AutoComplete
         return termIndexes.Select(termIndex => sourceTerms[termIndex]);
     }
 
-   
 
     internal static IEnumerable<int> FindMatchingSuffixes(
         this SuffixArrayResult suffixArrayResult, string search)
@@ -73,7 +71,8 @@ public static class AutoComplete
         {
             rightIndex += 1;
             if (rightIndex >= arrayItems.Length) break;
-            var substring = suffixArrayResult.ConcatenatedString[arrayItems[rightIndex].WordIndex..];
+            var substring =
+                suffixArrayResult.ConcatenatedString[arrayItems[rightIndex].WordIndex..];
             if (!substring.StartsWith(search)) break;
 
             result = result.Append(rightIndex).ToArray();
@@ -113,7 +112,7 @@ public static class AutoComplete
 
     internal static IEnumerable<SuffixArrayItem> GetSuffixArray(this IEnumerable<SuffixItem> input)
     {
-        return input.Select(x => new SuffixArrayItem(x.WordIndex, x.TermIndex));
+        return input.Select(x => new SuffixArrayItem(x.TermIndex, x.WordIndex));
     }
 
     internal static string ConcatenateToString(this IEnumerable<string> input)

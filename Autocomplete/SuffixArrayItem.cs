@@ -2,12 +2,12 @@
 
 public class SuffixArrayItem
 {
-    public SuffixArrayItem(int wordIndex, int termIndex)
+    public SuffixArrayItem(int termIndex, int wordIndex)
     {
         WordIndex = wordIndex;
         TermIndex = termIndex;
     }
 
-    public int WordIndex { get; set; }
-    public int TermIndex { get; set; }
+    public int WordIndex { get; private set; }
+    public int TermIndex { get; private set; }
 }

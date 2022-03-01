@@ -139,9 +139,9 @@ public class AutocompleteTest
         };
         var expected = new SuffixArrayItem[]
         {
-            new(6, 1), new(1, 0), new(0, 0),
-            new(2, 0), new(7, 1), new(3, 0), new(8, 1), new(4, 0),
-            new(9, 1), new(10, 1)
+            new(1, 6), new(0, 1), new(0, 0),
+            new(0, 2), new(1, 7), new(0, 3), new(1, 8), new(0, 4),
+            new(1, 9), new(1, 10)
         };
         var result = input.GetSuffixArray().ToArray();
         result[0].Should().BeEquivalentTo(expected[0]);
@@ -166,16 +166,16 @@ public class AutocompleteTest
         };
         var expected = new SuffixArrayItem[]
         {
-            new(6, 1),
-            new(1, 0),
+            new(1, 6),
+            new(0, 1),
             new(0, 0),
-            new(2, 0),
-            new(7, 1),
-            new(3, 0),
-            new(8, 1),
-            new(4, 0),
-            new(9, 1),
-            new(10, 1)
+            new(0, 2),
+            new(1, 7),
+            new(0, 3),
+            new(1, 8),
+            new(0, 4),
+            new(1, 9),
+            new(1, 10)
         };
         var suffixArrayResult = input.GetSuffixArray();
         suffixArrayResult.ConcatenatedString.Should().Be("hello$allow$");
@@ -197,16 +197,16 @@ public class AutocompleteTest
     {
         var suffixArray = new SuffixArrayItem[]
         {
-            new(6, 1),
-            new(1, 0),
+            new(1, 6),
+            new(0, 1),
             new(0, 0),
-            new(2, 0),
-            new(7, 1),
-            new(3, 0),
-            new(8, 1),
-            new(4, 0),
-            new(9, 1),
-            new(10, 1)
+            new(0, 2),
+            new(1, 7),
+            new(0, 3),
+            new(1, 8),
+            new(0, 4),
+            new(1, 9),
+            new(1, 1)
         };
         const string input = "Hello$allow$";
         const string search = "el";
@@ -219,16 +219,16 @@ public class AutocompleteTest
     {
         var suffixArray = new SuffixArrayItem[]
         {
-            new(6, 1),
-            new(1, 0),
+            new(1, 6),
+            new(0, 1),
             new(0, 0),
-            new(2, 0),
-            new(7, 1),
-            new(3, 0),
-            new(8, 1),
-            new(4, 0),
-            new(9, 1),
-            new(10, 1)
+            new(0, 2),
+            new(1, 7),
+            new(0, 3),
+            new(1, 8),
+            new(0, 4),
+            new(1, 9),
+            new(1, 10)
         };
         const string input = "Hello$allow$";
         const string search = "lo";

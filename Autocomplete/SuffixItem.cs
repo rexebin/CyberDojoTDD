@@ -10,6 +10,6 @@ public class SuffixItem
     }
 
     public int TermIndex { get; private set; }
-    public int WordIndex { get; set; }
+    public int WordIndex { get; private set; }
     public string Suffix { get; private set; }
 }
