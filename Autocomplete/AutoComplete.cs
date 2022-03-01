@@ -13,7 +13,7 @@ public static class AutoComplete
     {
         var concatenateToString = input.ConcatenateToString();
         var suffixArray = concatenateToString.ToLower()
-            .GetSuffixes()
+            .GetAllSuffixes()
             .RemoveSuffixesStartingWithDollar()
             .Sort()
             .GetSuffixArray().ToArray();
@@ -29,25 +29,25 @@ public static class AutoComplete
     {
         var sourceTerms = source.ToArray();
         var result = suffixArrayResult
-            .FindMatchingSuffixes(keyword.ToLower())
+            .FindMatchingSuffixIndexes(keyword.ToLower())
             .ToArray();
         var termIndexes = result.Select(i => suffixArrayResult.SuffixArray[i].TermIndex);
         return termIndexes.Select(termIndex => sourceTerms[termIndex]);
     }
 
 
-    internal static IEnumerable<int> FindMatchingSuffixes(
+    internal static IEnumerable<int> FindMatchingSuffixIndexes(
         this SuffixArrayResult suffixArrayResult, string search)
     {
         var matchingIndex =
-            suffixArrayResult.SuffixArray.FindMatchingIndex(suffixArrayResult.ConcatenatedString,
+            suffixArrayResult.SuffixArray.FindAnyMatchingSuffixIndex(suffixArrayResult.ConcatenatedString,
                 search);
         return matchingIndex == -1
             ? Enumerable.Empty<int>()
-            : GetAdjacentMatchingSuffixes(suffixArrayResult, matchingIndex, search);
+            : GetAdjacentMatchingSuffixIndexes(suffixArrayResult, matchingIndex, search);
     }
 
-    private static IEnumerable<int> GetAdjacentMatchingSuffixes(
+    private static IEnumerable<int> GetAdjacentMatchingSuffixIndexes(
         SuffixArrayResult suffixArrayResult, int matchingIndex,
         string search)
     {
@@ -81,7 +81,7 @@ public static class AutoComplete
         return result;
     }
 
-    internal static int FindMatchingIndex(
+    internal static int FindAnyMatchingSuffixIndex(
         this IEnumerable<SuffixArrayItem> suffixArray, string input, string search)
     {
         var suffixArrayItems = suffixArray.ToArray();
@@ -121,7 +121,7 @@ public static class AutoComplete
             (current, word) => String.IsNullOrEmpty(current) ? $"{word}$" : $"{current}{word}$");
     }
 
-    internal static IEnumerable<SuffixItem> GetSuffixes(this string input)
+    internal static IEnumerable<SuffixItem> GetAllSuffixes(this string input)
     {
         var i = 0;
         return input.Select((x, index) =>

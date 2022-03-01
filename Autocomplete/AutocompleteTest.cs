@@ -40,7 +40,7 @@ public class AutocompleteTest
             new("w$", 1, 10),
             new("$", 2, 11),
         };
-        var result = input.GetSuffixes();
+        var result = input.GetAllSuffixes();
         result.Should().BeEquivalentTo(expected);
     }
 
@@ -210,7 +210,7 @@ public class AutocompleteTest
         };
         const string input = "Hello$allow$";
         const string search = "el";
-        var result = suffixArray.FindMatchingIndex(input, search);
+        var result = suffixArray.FindAnyMatchingSuffixIndex(input, search);
         result.Should().Be(1);
     }
 
@@ -233,7 +233,7 @@ public class AutocompleteTest
         const string input = "Hello$allow$";
         const string search = "lo";
         var suffixArrayResult = new SuffixArrayResult(suffixArray, input);
-        var result = suffixArrayResult.FindMatchingSuffixes(search);
+        var result = suffixArrayResult.FindMatchingSuffixIndexes(search);
         result.Should().BeEquivalentTo(new[] { 5, 6 });
     }
 
