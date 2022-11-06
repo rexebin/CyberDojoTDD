@@ -263,4 +263,14 @@ public class AutocompleteTest
         input.FilterByKeyword("w", suffixArrayResult).Should()
             .BeEquivalentTo("allow", "world", "word");
     }
+
+    [Test]
+    public void ShouldReplaceSpaceWithDollar()
+    {
+        var input = @"hello world 
+What is your name?";
+        var words = input.FilterByKeyword("a");
+        words.Should().BeEquivalentTo(@"
+What", "name?");
+    }
 }

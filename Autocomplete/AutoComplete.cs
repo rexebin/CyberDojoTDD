@@ -12,12 +12,27 @@ public static class AutoComplete
     public static SuffixArrayResult GetSuffixArray(this IEnumerable<string> input)
     {
         var concatenateToString = input.ConcatenateToString();
-        var suffixArray = concatenateToString.ToLower()
+        var suffixArray = GetSuffixArray(concatenateToString);
+        return new SuffixArrayResult(suffixArray, concatenateToString);
+    }
+
+    private static SuffixArrayItem[] GetSuffixArray(this string concatenateToString)
+    {
+        return concatenateToString.ToLower()
             .GetAllSuffixes()
             .RemoveSuffixesStartingWithDollar()
             .Sort()
             .GetSuffixArray().ToArray();
-        return new SuffixArrayResult(suffixArray, concatenateToString);
+    }
+
+    public static IEnumerable<string> FilterByKeyword(this string input, string keyword)
+    {
+        var words = input.Split(" ");
+        var concatenatedString = string.Join("$", words);
+        var suffixArrayResult = new SuffixArrayResult(concatenatedString.GetSuffixArray(), concatenatedString);
+        var indexes = suffixArrayResult.FindMatchingSuffixIndexes(keyword.ToLower());
+        var termIndexes = indexes.Select(i => suffixArrayResult.SuffixArray[i].TermIndex);
+        return termIndexes.Select(termIndex =>words[termIndex]);
     }
 
     /**
@@ -87,8 +102,7 @@ public static class AutoComplete
         var suffixArrayItems = suffixArray.ToArray();
         var low = 0;
         var high = suffixArrayItems.Length - 1;
-        SuffixArrayItem? result = null;
-        while (result == null && low <= high)
+        while (low <= high)
         {
             var middle = low + (high - low) / 2;
             var middleSubstring = input[suffixArrayItems[middle].WordIndex..];
